@@ -4,6 +4,7 @@
 
 // GSAP Registration
 gsap.registerPlugin(ScrollTrigger);
+const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
 // ==========================================
 // INITIALIZE ON DOM LOAD
@@ -89,43 +90,54 @@ function initEnhancedAnimations() {
         ease: "back.out(1.7)"
     });
 
-    // Floating cards with 3D rotation
-    gsap.from('.floating-card', {
-        duration: 1.2,
-        scale: 0,
-        rotation: 360,
+    // Hero image entrance
+    gsap.from('.hero-image', {
+        duration: 1.1,
+        y: 40,
         opacity: 0,
-        stagger: 0.2,
-        delay: 1.8,
-        ease: "elastic.out(1, 0.5)"
+        scale: 0.96,
+        delay: 1.2,
+        ease: "power3.out"
     });
 
-    // Add continuous floating animation to cards
-    gsap.to('.card-1', {
-        y: -20,
-        duration: 2.5,
-        repeat: -1,
-        yoyo: true,
-        ease: "sine.inOut"
+    // Floating cards with cinematic reveal
+    const floatingCards = gsap.utils.toArray('.floating-card');
+    gsap.from(floatingCards, {
+        duration: 1.1,
+        y: 60,
+        opacity: 0,
+        rotationX: 35,
+        transformOrigin: "50% 50% -120px",
+        stagger: 0.18,
+        delay: 1.5,
+        ease: "power3.out"
     });
 
-    gsap.to('.card-2', {
-        y: -25,
-        duration: 3,
-        repeat: -1,
-        yoyo: true,
-        ease: "sine.inOut",
-        delay: 0.5
-    });
+    if (!prefersReducedMotion) {
+        // Add continuous floating animation to cards
+        floatingCards.forEach((card, index) => {
+            gsap.to(card, {
+                y: -16 - (index * 4),
+                rotation: index % 2 === 0 ? 1.5 : -1.5,
+                duration: 3.2 + index * 0.4,
+                repeat: -1,
+                yoyo: true,
+                ease: "sine.inOut",
+                delay: 0.4 * index
+            });
 
-    gsap.to('.card-3', {
-        y: -18,
-        duration: 2.8,
-        repeat: -1,
-        yoyo: true,
-        ease: "sine.inOut",
-        delay: 1
-    });
+            const sheen = card.querySelector('.card-sheen');
+            if (sheen) {
+                gsap.to(sheen, {
+                    x: '220%',
+                    duration: 4.5 + index,
+                    repeat: -1,
+                    ease: "sine.inOut",
+                    delay: 1 + index
+                });
+            }
+        });
+    }
 
     // Scroll indicator animation
     gsap.to('.scroll-line', {
@@ -580,6 +592,21 @@ function initScrollEffects() {
         ease: "none"
     });
 
+    // Floating cards subtle scroll parallax
+    gsap.utils.toArray('.floating-card').forEach((card, index) => {
+        gsap.to(card, {
+            scrollTrigger: {
+                trigger: '.hero',
+                start: 'top top',
+                end: 'bottom top',
+                scrub: 1
+            },
+            y: index % 2 === 0 ? -40 : 40,
+            rotation: index % 2 === 0 ? 5 : -5,
+            ease: "none"
+        });
+    });
+
     // ===== NAVBAR BACKGROUND ON SCROLL =====
     
     ScrollTrigger.create({
@@ -687,6 +714,43 @@ function initInteractiveElements() {
             });
         });
     });
+
+    // Hero image tilt and depth parallax
+    const heroImage = document.querySelector('.hero-image');
+    if (heroImage && !prefersReducedMotion) {
+        const cards = heroImage.querySelectorAll('.floating-card');
+
+        heroImage.addEventListener('mousemove', (e) => {
+            const rect = heroImage.getBoundingClientRect();
+            const relX = (e.clientX - rect.left) / rect.width - 0.5;
+            const relY = (e.clientY - rect.top) / rect.height - 0.5;
+
+            cards.forEach((card) => {
+                const depth = parseFloat(card.dataset.depth) || 0.6;
+                gsap.to(card, {
+                    duration: 0.6,
+                    rotationY: relX * 12 * depth,
+                    rotationX: -relY * 12 * depth,
+                    x: relX * 12 * depth,
+                    y: relY * 12 * depth,
+                    ease: "power3.out"
+                });
+            });
+        });
+
+        heroImage.addEventListener('mouseleave', () => {
+            cards.forEach((card) => {
+                gsap.to(card, {
+                    duration: 0.8,
+                    rotationX: 0,
+                    rotationY: 0,
+                    x: 0,
+                    y: 0,
+                    ease: "power3.out"
+                });
+            });
+        });
+    }
 
     // ===== INPUT FOCUS ANIMATIONS =====
     
