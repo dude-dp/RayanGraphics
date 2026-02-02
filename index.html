@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rayan Graphics - Professional Printing Services in Chennai</title>
+    <meta name="description" content="Premium printing services in T. Nagar, Chennai. Visiting cards, pamphlets, calendars, stickers, lanyards & more. Rated 4.8/5 stars.">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Styles -->
+    <link rel="stylesheet" href="assets/styles.css">
+    
+    <!-- GSAP Animation Library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    
+    <!-- Razorpay Payment Gateway -->
+    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">
+                <span class="logo-text">RAYAN</span>
+                <span class="logo-subtext">GRAPHICS</span>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="#home" class="nav-link active">Home</a></li>
+                <li><a href="#services" class="nav-link">Services</a></li>
+                <li><a href="#portfolio" class="nav-link">Portfolio</a></li>
+                <li><a href="#reviews" class="nav-link">Reviews</a></li>
+                <li><a href="#contact" class="nav-link">Contact</a></li>
+            </ul>
+            <button class="order-btn" onclick="scrollToOrder()">Order Now</button>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-bg">
+            <div class="cmyk-circle cyan"></div>
+            <div class="cmyk-circle magenta"></div>
+            <div class="cmyk-circle yellow"></div>
+            <div class="cmyk-circle black"></div>
+        </div>
+        <div class="hero-content">
+            <div class="hero-text">
+                <h1 class="hero-title">
+                    <span class="title-line">PREMIUM</span>
+                    <span class="title-line">PRINTING</span>
+                    <span class="title-line">SOLUTIONS</span>
+                </h1>
+                <p class="hero-subtitle">Making your print works easier & professional since day one</p>
+                <div class="hero-stats">
+                    <div class="stat">
+                        <span class="stat-number">4.8</span>
+                        <span class="stat-label">Rating</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-number">18+</span>
+                        <span class="stat-label">Reviews</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-number">1000+</span>
+                        <span class="stat-label">Projects</span>
+                    </div>
+                </div>
+                <div class="hero-cta">
+                    <button class="cta-primary" onclick="scrollToOrder()">Get Started</button>
+                    <button class="cta-secondary" onclick="scrollToSection('services')">Our Services</button>
+                </div>
+            </div>
+            <div class="hero-image">
+                <div class="floating-card card-1">
+                    <div class="card-content">
+                        <span class="card-icon">📇</span>
+                        <span class="card-text">Visiting Cards</span>
+                    </div>
+                </div>
+                <div class="floating-card card-2">
+                    <div class="card-content">
+                        <span class="card-icon">📄</span>
+                        <span class="card-text">Pamphlets</span>
+                    </div>
+                </div>
+                <div class="floating-card card-3">
+                    <div class="card-content">
+                        <span class="card-icon">🏷️</span>
+                        <span class="card-text">Stickers</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="scroll-indicator">
+            <span>Scroll</span>
+            <div class="scroll-line"></div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="services">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">What We Offer</span>
+                <h2 class="section-title">Our Services</h2>
+                <p class="section-desc">Professional printing solutions for all your needs</p>
+            </div>
+            <div class="services-grid">
+                <div class="service-card" data-service="visiting-cards">
+                    <div class="service-icon">📇</div>
+                    <h3 class="service-title">Visiting Cards</h3>
+                    <p class="service-desc">Premium quality business cards with custom designs & multiple finishes.</p>
+                    <ul class="service-features">
+                        <li>Matt/Glossy finish</li>
+                        <li>300 GSM paper</li>
+                        <li>Quick turnaround</li>
+                    </ul>
+                    <button class="service-btn" onclick="openOrderModal('Visiting Cards')">Order Now</button>
+                </div>
+                
+                <div class="service-card" data-service="pamphlets">
+                    <div class="service-icon">📄</div>
+                    <h3 class="service-title">Pamphlets & Flyers</h3>
+                    <p class="service-desc">Eye-catching promotional materials for your marketing campaigns</p>
+                    <ul class="service-features">
+                        <li>A4/A5 sizes</li>
+                        <li>Full color printing</li>
+                        <li>Bulk discounts</li>
+                    </ul>
+                    <button class="service-btn" onclick="openOrderModal('Pamphlets')">Order Now</button>
+                </div>
+                
+                <div class="service-card" data-service="stickers">
+                    <div class="service-icon">🏷️</div>
+                    <h3 class="service-title">Stickers</h3>
+                    <p class="service-desc">Custom stickers for branding, packaging, and promotional use</p>
+                    <ul class="service-features">
+                        <li>Waterproof vinyl</li>
+                        <li>Any shape/size</li>
+                        <li>UV resistant</li>
+                    </ul>
+                    <button class="service-btn" onclick="openOrderModal('Stickers')">Order Now</button>
+                </div>
+                
+                <div class="service-card" data-service="calendars">
+                    <div class="service-icon">📅</div>
+                    <h3 class="service-title">Calendars</h3>
+                    <p class="service-desc">Wall and desk calendars with custom designs for corporate gifting</p>
+                    <ul class="service-features">
+                        <li>Wall/Desk options</li>
+                        <li>Custom branding</li>
+                        <li>12-month layouts</li>
+                    </ul>
+                    <button class="service-btn" onclick="openOrderModal('Calendars')">Order Now</button>
+                </div>
+                
+                <div class="service-card" data-service="lanyards">
+                    <div class="service-icon">🎫</div>
+                    <h3 class="service-title">Lanyards</h3>
+                    <p class="service-desc">Screen printed lanyards for events, corporate IDs, and conferences</p>
+                    <ul class="service-features">
+                        <li>Silk screen printing</li>
+                        <li>Custom colors</li>
+                        <li>Bulk orders</li>
+                    </ul>
+                    <button class="service-btn" onclick="openOrderModal('Lanyards')">Order Now</button>
+                </div>
+                
+                <div class="service-card" data-service="bags">
+                    <div class="service-icon">🛍️</div>
+                    <h3 class="service-title">Printed Bags</h3>
+                    <p class="service-desc">Custom printed carry bags and promotional bags for your brand</p>
+                    <ul class="service-features">
+                        <li>Paper/Cloth bags</li>
+                        <li>Logo printing</li>
+                        <li>Eco-friendly options</li>
+                    </ul>
+                    <button class="service-btn" onclick="openOrderModal('Bags')">Order Now</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Portfolio Section -->
+    <section id="portfolio" class="portfolio">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">Our Work</span>
+                <h2 class="section-title">Portfolio</h2>
+                <p class="section-desc">Showcasing excellence in every print</p>
+            </div>
+            <div class="portfolio-grid">
+                <div class="portfolio-item" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
+                    <div class="portfolio-overlay">
+                        <h4>Business Branding</h4>
+                        <p>Complete stationery suite</p>
+                    </div>
+                </div>
+                <div class="portfolio-item" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);">
+                    <div class="portfolio-overlay">
+                        <h4>Event Materials</h4>
+                        <p>Banners & standees</p>
+                    </div>
+                </div>
+                <div class="portfolio-item" style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);">
+                    <div class="portfolio-overlay">
+                        <h4>Product Labels</h4>
+                        <p>Custom stickers & tags</p>
+                    </div>
+                </div>
+                <div class="portfolio-item" style="background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);">
+                    <div class="portfolio-overlay">
+                        <h4>Marketing Collateral</h4>
+                        <p>Brochures & flyers</p>
+                    </div>
+                </div>
+                <div class="portfolio-item" style="background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);">
+                    <div class="portfolio-overlay">
+                        <h4>Corporate Gifting</h4>
+                        <p>Calendars & diaries</p>
+                    </div>
+                </div>
+                <div class="portfolio-item" style="background: linear-gradient(135deg, #30cfd0 0%, #330867 100%);">
+                    <div class="portfolio-overlay">
+                        <h4>Packaging Solutions</h4>
+                        <p>Boxes & bags</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Reviews Section -->
+    <section id="reviews" class="reviews">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">Testimonials</span>
+                <h2 class="section-title">What Clients Say</h2>
+                <p class="section-desc">Trusted by businesses across Chennai</p>
+            </div>
+            <div class="reviews-container">
+                <div class="review-card">
+                    <div class="review-stars">★★★★★</div>
+                    <p class="review-text">"Rayan graphics makes print works easier and professional. Very knowledgeable and affordable price for all kinds of print works."</p>
+                    <div class="review-author">
+                        <div class="author-avatar">V</div>
+                        <div class="author-info">
+                            <h4>Velmurugan Tr</h4>
+                            <span>Verified Customer</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="review-card">
+                    <div class="review-stars">★★★★★</div>
+                    <p class="review-text">"Excellent quality prints with quick turnaround time. The team is very professional and understands our requirements perfectly."</p>
+                    <div class="review-author">
+                        <div class="author-avatar">R</div>
+                        <div class="author-info">
+                            <h4>Rajesh Kumar</h4>
+                            <span>Business Owner</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="review-card">
+                    <div class="review-stars">★★★★★</div>
+                    <p class="review-text">"Best printing service in T. Nagar! Great prices, quality work, and friendly service. Highly recommend for all printing needs."</p>
+                    <div class="review-author">
+                        <div class="author-avatar">P</div>
+                        <div class="author-info">
+                            <h4>Priya Sharma</h4>
+                            <span>Marketing Manager</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="review-summary">
+                <div class="rating-box">
+                    <span class="rating-number">4.8</span>
+                    <div class="rating-stars">★★★★★</div>
+                    <span class="rating-count">Based on 100+ reviews</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <div class="contact-content">
+                <div class="contact-info">
+                    <h2>Visit Our Store</h2>
+                    <div class="info-item">
+                        <span class="info-icon">📍</span>
+                        <div class="info-text">
+                            <h4>Address</h4>
+                            <p>Shop no A2,<br>Y.M.D Complex, Lawyer Chinnathambi St, NN Garden, Washermanpet,<br>Chennai, Tamil Nadu 600021</p>
+                        </div>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-icon">🕒</span>
+                        <div class="info-text">
+                            <h4>Hours</h4>
+                            <p>Monday - Saturday<br>11:00 AM - 8:00 PM</p>
+                        </div>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-icon">🚇</span>
+                        <div class="info-text">
+                            <h4>Nearest Metro</h4>
+                            <p>Oldwashermenpet Metro Station (0.58 km)<br>Blue Line</p>
+                        </div>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-icon">🚉</span>
+                        <div class="info-text">
+                            <h4>Nearest Railway</h4>
+                            <p>Oldwashermenpet Railway Station (1.24 km)</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="contact-form-container">
+                    <h2>Get a Quote</h2>
+                    <form class="contact-form" id="quoteForm">
+                        <div class="form-group">
+                            <input type="text" name="name" placeholder="Your Name" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="email" name="email" placeholder="Email Address" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="tel" name="phone" placeholder="Phone Number" required>
+                        </div>
+                        <div class="form-group">
+                            <select name="service" required>
+                                <option value="">Select Service</option>
+                                <option value="visiting-cards">Visiting Cards</option>
+                                <option value="pamphlets">Pamphlets & Flyers</option>
+                                <option value="stickers">Stickers</option>
+                                <option value="calendars">Calendars</option>
+                                <option value="lanyards">Lanyards</option>
+                                <option value="bags">Printed Bags</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <textarea name="message" rows="4" placeholder="Describe your requirements"></textarea>
+                        </div>
+                        <button type="submit" class="submit-btn">Submit Request</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="footer-logo">
+                        <span class="logo-text">RAYAN</span>
+                        <span class="logo-subtext">GRAPHICS</span>
+                    </div>
+                    <p>Your trusted partner for professional printing solutions in Chennai.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#services">Services</a></li>
+                        <li><a href="#portfolio">Portfolio</a></li>
+                        <li><a href="#reviews">Reviews</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Services</h4>
+                    <ul>
+                        <li><a href="#services">Visiting Cards</a></li>
+                        <li><a href="#services">Pamphlets</a></li>
+                        <li><a href="#services">Stickers</a></li>
+                        <li><a href="#services">Calendars</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Contact</h4>
+                    <p>Pondy Bazaar, T. Nagar<br>Chennai - 600021</p>
+                    <p>11:00 AM - 8:00 PM<br>All Days</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 Rayan Graphics. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <div id="orderModal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeOrderModal()">&times;</span>
+            <h2>Place Your Order</h2>
+            <p class="modal-subtitle">Selected Service: <span id="selectedService"></span></p>
+            <form id="orderForm" class="order-form">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Name</label>
+                        <input type="text" name="customer_name" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Email</label>
+                        <input type="email" name="customer_email" required>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Phone</label>
+                        <input type="tel" name="customer_phone" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Quantity</label>
+                        <input type="number" name="quantity" min="1" value="100" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Additional Details</label>
+                    <textarea name="details" rows="3" placeholder="Size, color, finish, special requirements..."></textarea>
+                </div>
+                <div class="form-group">
+                    <label>Upload Design (Optional)</label>
+                    <input type="file" name="design_file" accept="image/*,.pdf">
+                </div>
+                <div class="price-estimate">
+                    <span>Estimated Price:</span>
+                    <span class="price-amount" id="estimatedPrice">₹500 - ₹2000</span>
+                </div>
+                <div class="form-actions">
+                    <button type="button" class="btn-secondary" onclick="closeOrderModal()">Cancel</button>
+                    <button type="submit" class="btn-primary">Proceed to Payment</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Success Message -->
+    <div id="successMessage" class="success-message">
+        <div class="success-content">
+            <span class="success-icon">✓</span>
+            <h3>Success!</h3>
+            <p id="successText">Your request has been submitted successfully.</p>
+        </div>
+    </div>
+    <script src="assets/script.js"></script>
+</body>
+</html>
